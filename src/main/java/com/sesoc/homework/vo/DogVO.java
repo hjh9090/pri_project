@@ -23,16 +23,4 @@ public class DogVO {
 	
 	
 	
-	
-	
-//	private int boardnum;
-//	private int category;
-//	private String id;
-//	private String title;
-//	private String content;
-//	private String inputdate;
-//	private String originalfile;
-//	private String savedfile;
-	
-	
 }
