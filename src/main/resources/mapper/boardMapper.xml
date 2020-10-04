@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sesoc.homework.dao.BoardMapper">
+
+<!-- 강아지 게시판 영역 -->
+<select id="dogBoard" resultType="dog">
+select BOARDNUM,id,title,to_char(INPUTDATE, 'YYYY-MM-DD') INPUTDATE
+from 
+	dog_board
+</select>
+
+<insert id="insertDog" parameterType="dog">
+insert into dog_board
+(BOARDNUM, id, title, content)
+values
+(board_dog_seq.nextval, #{id}, #{title}, #{content})
+</insert>
+
+<select id="goDog" resultType = "dog">
+select *
+from dog_board
+where boardnum = #{boardnum}
+order by boardnum
+</select>
+
+<delete id="deleteDog" parameterType="dog">
+delete from dog_board where BOARDNUM = #{BOARDNUM}
+</delete>
+
+<update id="updateDog" parameterType="dog">
+update dog_board set
+content = #{content}
+where boardnum = #{boardnum}
+</update>
+
+
+<!-- 고양이 게시판 영역 -->
+
+<select id="catBoard" resultType="cat">
+select BOARDNUM,id,title,to_char(INPUTDATE, 'YYYY-MM-DD') INPUTDATE
+from 
+	cat_board
+</select>
+
+<insert id="insertCat" parameterType="cat">
+insert into cat_board
+(BOARDNUM, id, title, content)
+values
+(board_cat_seq.nextval, #{id}, #{title}, #{content})
+</insert>
+
+<select id="goCat" resultType = "cat">
+select *
+from cat_board
+where boardnum = #{boardnum}
+order by boardnum
+</select>
+
+<delete id="deleteCat" parameterType="cat">
+delete from cat_board where BOARDNUM = #{BOARDNUM}
+</delete>
+
+<update id="updateCat" parameterType="cat">
+update cat_board 
+<set>
+<if test="content != ''">
+content = #{content}
+</if>
+</set>
+where BOARDNUM = #{BOARDNUM}
+</update>
+
+<!-- 그 외 동물들 영역 -->
+<select id="etcBoard" resultType="etc">
+select BOARDNUM,id,title,to_char(INPUTDATE, 'YYYY-MM-DD') INPUTDATE
+from 
+	etc_board
+</select>
+
+<insert id="insertEtc" parameterType="etc">
+insert into etc_board
+(BOARDNUM, id, title, content)
+values
+(board_etc_seq.nextval, #{id}, #{title}, #{content})
+</insert>
+
+<select id="goEtc" resultType = "etc">
+select *
+from etc_board
+where boardnum = #{boardnum}
+order by boardnum
+</select>
+
+<delete id="deleteEtc" parameterType="etc">
+delete from etc_board where BOARDNUM = #{BOARDNUM}
+</delete>
+
+<update id="updateEtc" parameterType="etc">
+update etc_board 
+<set>
+<if test="content != ''">
+content = #{content}
+</if>
+</set>
+where BOARDNUM = #{BOARDNUM}
+</update>
+
+
+</mapper>

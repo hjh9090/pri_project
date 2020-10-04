@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sesoc.homework.dao.MemberMapper">
+<insert id="insertMember" parameterType="member"> 
+insert into pro_member (id, password, name, phone, email)
+values (#{id}, #{password}, #{name}, #{phone}, #{email})
+</insert>
+
+<select id="getMember" resultType="int">
+select count(*)
+from pro_member
+where id = #{id}
+</select>
+
+<select id="loginMember" parameterType = "member" resultType = "Integer">
+
+select count(*) from pro_member
+where id = #{id} and password = #{password}
+
+</select>
+
+<delete id="deleteMember" parameterType = "member">
+delete from pro_member where id = #{id} and password = #{password}
+</delete>
+
+<select id="allMember" resultType = "member">
+select * from pro_member
+where id = #{id}
+</select>
+
+<update id="updateMember" parameterType = "member">
+update pro_member
+<set>
+<if test="password != ''">
+	password = #{password},
+</if>
+<if test="name != ''">
+	 name = #{name},
+</if>
+<if test="phone != ''">
+	phone = #{phone},
+</if>
+<if test="email != ''">
+	email = #{email}
+</if>
+</set>
+where id like #{id}
+</update>
+
+</mapper>
