@@ -45,7 +45,7 @@ from
 
 <insert id="insertCat" parameterType="cat">
 insert into cat_board
-(BOARDNUM, id, title, content)
+(Boardnum, id, title, content)
 values
 (board_cat_seq.nextval, #{id}, #{title}, #{content})
 </insert>

@@ -101,7 +101,7 @@ public class BoardController {
 	
 	@GetMapping("catWrite")
 	public String gowrite2() {
-		logger.info("강아지 작성으로 이동");
+		logger.info("고양이 작성으로 이동");
 		return "board/catWrite";
 	}
 	
